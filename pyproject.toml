@@ -1,0 +1,12 @@
+[project]
+name = "zekrom"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.38.3",
+    "duckdb>=1.2.2",
+    "eccodes>=2.41.0",
+    "scikit-learn>=1.6.1",
+]
