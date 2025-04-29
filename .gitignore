@@ -13,6 +13,7 @@ wheels/
 
 *.grib2
 *.grib2.idx
-
+samples/
 instructions/
 *.duckdb
+*.duckdb.wal

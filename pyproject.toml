@@ -1,7 +1,7 @@
 [project]
 name = "zekrom"
 version = "0.1.0"
-description = "Add your description here"
+description = "zekrom - a hrrr-grib2 data ingestion tool"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -10,3 +10,10 @@ dependencies = [
     "eccodes>=2.41.0",
     "scikit-learn>=1.6.1",
 ]
+
+[project.scripts]
+zekrom = "core.cli:main_cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*"]
