@@ -122,5 +122,5 @@ zekrom <target_points_file> [OPTIONS]
 *   [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html): AWS SDK for Python.
 *   [DuckDB](https://duckdb.org/): In-process analytical data management system.
 *   [ecCodes](https://confluence.ecmwf.int/display/ECC/ecCodes+Home): ECMWF library for decoding/encoding meteorological data formats (GRIB, BUFR).
-*   [scikit-learn](https://scikit-learn.org/stable/): Used for finding nearest neighbors (likely for matching points to grid).
+*   [scikit-learn](https://scikit-learn.org/stable/): Used for finding nearest neighbors (for matching points to grid).
 *   [uv](https://github.com/astral-sh/uv): Fast Python package installer and resolver.
