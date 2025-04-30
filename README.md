@@ -24,7 +24,7 @@ A command-line tool to fetch HRRR (High-Resolution Rapid Refresh) GRIB2 forecast
 
 1.  **Clone the repository:**
     ```bash
-    git clone git@github.com:ahhcash/zekrom 
+    git clone git@github.com:ahhcash/zekrom.git
     cd zekrom
     ```
 
