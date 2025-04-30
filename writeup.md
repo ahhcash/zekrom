@@ -7,26 +7,25 @@ Another *major* challenge was figuring out who to use eccodes to read directly f
 to inspect grib2 files). I tried to read directly from s3 and for some reason, the whole process wrecked my internet connection and started erroring out (because `boto3` returns a network stream of 
 bytes for each file which will not have a file handle that `eccodes` expects). I decided to just download these files to a temp directory, process them and clean them up.
 
-2. The only assistant I used was Google Gemini 2.5 pro, through Google AI studio and Windsurf. Here are some of the prompts, I used,
-    -
-    ```i have a grib2 file and it's corresponding grib2.idx file in plaintext. hrrr.t06z.wrfnatf15.grib2 and hrrr.t06z.wrfnatf15.grib2.idx. i want to read the entire contents of this file and print it out stdout. i'm doing this in golang, and found this librayr that would help. https://github.com/amsokol/go-grib2. 
-   help me write some boilerplate code for this. take it step by step, don't do too much at once. before moving on to the next step, confirm with me.
-   ```
-    - 
-    ```okay, this worked. i have a few questions.
-    why did i get the fileno error earlier then?
-    what is different about downloading the file and then processing it as opposed to prcoessing on s3 (like we did earlier)
-    in each of these grib2 files's messages (records), are there any indications of latitudes and longitudes?
-   ```
-    -
-    ```so for every message in a single forecast run, will the grid ID that im constructing be the same? basically what i'm asking is, is the grid caching method logically sound?
-   ```
-   -
-   ```okay, now on to the next major task. i want to refactor the code into  a maintainable project structure. can you help me do this? currently, all of the logic is in the single file you see - main.py. i want to make it structured and maintainable. let's do this one step at a time. once im finished with a step, 
-   i'll tell you to move to the next one. understood?
-   ```
-
-    The main areas where it helped was refactoring and packaging everything into a command line tool.
+2.  The only assistant I used was Google Gemini 2.5 pro, through Google AI studio and Windsurf. Here are some of the prompts I used:
+    *   ```
+        i have a grib2 file and it's corresponding grib2.idx file in plaintext. hrrr.t06z.wrfnatf15.grib2 and hrrr.t06z.wrfnatf15.grib2.idx. i want to read the entire contents of this file and print it out stdout. i'm doing this in golang, and found this librayr that would help. https://github.com/amsokol/go-grib2.
+        help me write some boilerplate code for this. take it step by step, don't do too much at once. before moving on to the next step, confirm with me.
+        ```
+    *   ```
+        okay, this worked. i have a few questions.
+        why did i get the fileno error earlier then?
+        what is different about downloading the file and then processing it as opposed to prcoessing on s3 (like we did earlier)
+        in each of these grib2 files's messages (records), are there any indications of latitudes and longitudes?
+        ```
+    *   ```
+        so for every message in a single forecast run, will the grid ID that im constructing be the same? basically what i'm asking is, is the grid caching method logically sound?
+        ```
+    *   ```
+        okay, now on to the next major task. i want to refactor the code into  a maintainable project structure. can you help me do this? currently, all of the logic is in the single file you see - main.py. i want to make it structured and maintainable. let's do this one step at a time. once im finished with a step,
+        i'll tell you to move to the next one. understood?
+        ```
+The main areas where it helped was refactoring and packaging everything into a command line tool.
 
 3. Deploying this solution as a production service would involve several key components:
     *   **Deployment & Orchestration:** I would containerize the application using Docker. For orchestration and scheduling, I would use a cloud-native workflow tool like Prefect Cloud or Apache Airflow. This allows defining the ingestion process as a DAG, clearly separating steps like downloading, processing, and storing. These tools provide robust scheduling (including CRON for regular intervals), automatic retries for transient failures, parallel execution, and visibility into pipeline runs. Deployment of the orchestration engine and the containerized workers could be managed using Kubernetes (like AWS EKS or GKE) for scalability and resilience. CI/CD pipelines (e.g., using GitHub Actions or GitLab CI) would automate testing and deployment.
