@@ -1,3 +1,5 @@
+# Copyright (C) 2025 Aakash Shankar
+
 import argparse
 import csv
 import os

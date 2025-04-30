@@ -1,3 +1,4 @@
+# Copyright (C) 2025 Aakash Shankar
 S3_BUCKET = "noaa-hrrr-bdp-pds"
 RUN_DATE = "20150323"  # The most recent date for the 06Z run to include
 NUM_HOURS = 48

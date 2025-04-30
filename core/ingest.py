@@ -1,3 +1,5 @@
+# Copyright (C) 2025 Aakash Shankar
+
 import math
 import os
 import sys

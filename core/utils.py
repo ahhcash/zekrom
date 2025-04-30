@@ -1,3 +1,5 @@
+# Copyright (C) 2025 Aakash Shankar
+
 import numpy as np
 
 def latlon_to_xyz(lat, lon):
@@ -7,4 +9,3 @@ def latlon_to_xyz(lat, lon):
     y = np.cos(lat_rad) * np.sin(lon_rad)
     z = np.sin(lat_rad)
     return x, y, z
-
